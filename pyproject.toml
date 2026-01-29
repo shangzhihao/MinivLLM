@@ -9,27 +9,3 @@ dependencies = [
     "torch",
     "xxhash",
 ]
-
-[project.optional-dependencies]
-dev = [
-    "pytest",
-    "black",
-    "isort",
-]
-
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-package-dir = {"" = "src"}
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[dependency-groups]
-dev = [
-    "pytest>=7.0",
-    "black>=23.0",
-    "isort>=5.0",
-]

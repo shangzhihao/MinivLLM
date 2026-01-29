@@ -1,26 +1,23 @@
 {
-  "name": "Ubuntu with uv",
-  // Using the standard Ubuntu dev container image
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-
-  // This runs the curl script and updates the PATH for the terminal
-  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && echo 'export PATH=\"$HOME/.local/bin:$PATH\"' >> ~/.bashrc",
+  "name": "MinivLLM - Debian Slim & uv",
+  "image": "mcr.microsoft.com/devcontainers/base:debian",
+  "postCreateCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && echo 'export PATH=\"$HOME/.local/bin:$PATH\"' >> ~/.bashrc && $HOME/.local/bin/uv sync",
 
   "customizations": {
     "vscode": {
       "settings": {
-        // This ensures the VS Code terminal sees the new uv path immediately
         "terminal.integrated.env.linux": {
           "PATH": "${env:PATH}:${home}/.local/bin"
-        }
+        },
+        "python.defaultInterpreterPath": "${workspaceRoot}/.venv/bin/python"
       },
       "extensions": [
         "ms-python.python",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml"
       ]
     }
   },
 
-  // Ensures the 'vscode' user has the right permissions
   "remoteUser": "vscode"
 }
